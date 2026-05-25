@@ -1,18 +1,34 @@
+const { expect } = require('@playwright/test');
+
 class DashboardPage {
 
     constructor(page) {
+
         this.page = page;
 
-        this.inventoryTitle = '.title';
         this.cartIcon = '.shopping_cart_link';
+
+        this.inventoryContainer =
+            '[data-test="inventory-container"]';
     }
 
     async verifyDashboardLoaded() {
-        await this.page.waitForSelector(this.inventoryTitle);
+
+        await expect(
+            this.page.locator(this.inventoryContainer)
+        ).toBeVisible();
     }
 
     async clickCart() {
-        await this.page.click(this.cartIcon);
+
+        await this.page.waitForSelector(
+            this.cartIcon,
+            { state: 'visible' }
+        );
+
+        await this.page.locator(
+            this.cartIcon
+        ).click();
     }
 }
 

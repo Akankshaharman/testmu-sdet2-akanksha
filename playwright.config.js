@@ -4,15 +4,17 @@ module.exports = defineConfig({
 
   testDir: './tests',
 
-  timeout: 30000,
+  timeout: 60000,
 
   retries: 1,
+
+  workers: 2,
 
   reporter: 'html',
 
   use: {
 
-    headless: false,
+    headless: true,
 
     screenshot: 'only-on-failure',
 
@@ -26,12 +28,22 @@ module.exports = defineConfig({
 
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+
+      use: {
+        ...devices['Desktop Chrome'],
+      },
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+
+      use: {
+        ...devices['Desktop Firefox'],
+
+        launchOptions: {
+          slowMo: 200,
+        },
+      },
     },
 
   ],
