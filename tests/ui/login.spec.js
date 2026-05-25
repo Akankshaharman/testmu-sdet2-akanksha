@@ -15,3 +15,19 @@ test('Valid Login Test', async ({ page }) => {
 
     await expect(page).toHaveURL(/inventory/);
 });
+
+test('Invalid Login Test', async ({ page }) => {
+
+    const loginPage = new LoginPage(page);
+
+    await loginPage.navigateToLoginPage();
+
+    await loginPage.login(
+        'locked_out_user',
+        'wrong_password'
+    );
+
+    await expect(
+        page.locator('[data-test="error"]')
+    ).toBeVisible();
+});
