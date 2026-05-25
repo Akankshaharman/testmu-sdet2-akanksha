@@ -1,0 +1,23 @@
+{
+  "name": "testmu-sdet2-akanksha",
+  "version": "1.0.0",
+  "description": "Hybrid UI + API automation framework using Playwright, Rest Assured, TestNG, Allure and GitHub Actions",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akankshaharman/testmu-sdet2-akanksha.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Akankshaharman/testmu-sdet2-akanksha/issues"
+  },
+  "homepage": "https://github.com/Akankshaharman/testmu-sdet2-akanksha#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.1"
+  }
+}
