@@ -21,27 +21,34 @@ class LoginPage {
         );
     }
 
-  async login(username, password) {
+    async login(username, password) {
 
-    await this.page.fill(
-        this.username,
-        username
-    );
+        await this.page.fill(
+            this.username,
+            username
+        );
 
-    await this.page.fill(
-        this.password,
-        password
-    );
+        await this.page.fill(
+            this.password,
+            password
+        );
 
-    await this.page.waitForSelector(
-        this.loginButton,
-        { state: 'visible' }
-    );
+        await this.page.waitForSelector(
+            this.loginButton,
+            { state: 'visible' }
+        );
 
-    await this.page.locator(
-        this.loginButton
-    ).click();
-}
+        await this.page.locator(
+            this.loginButton
+        ).click();
+    }
+
+    async clickLoginButton() {
+
+        await this.page.locator(
+            this.loginButton
+        ).click();
+    }
 }
 
 module.exports = LoginPage;
