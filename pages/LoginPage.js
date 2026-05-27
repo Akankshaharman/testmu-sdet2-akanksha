@@ -1,5 +1,5 @@
 class LoginPage {
-
+ 
     constructor(page) {
 
         this.page = page;
@@ -16,9 +16,8 @@ class LoginPage {
 
     async navigateToLoginPage() {
 
-        await this.page.goto(
-            'https://www.saucedemo.com'
-        );
+       const env = require('../config/env');
+       await this.page.goto(env.uiUrl);
     }
 
     async login(username, password) {

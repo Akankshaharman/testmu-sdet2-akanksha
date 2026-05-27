@@ -4,41 +4,47 @@ class UserApi {
 
     constructor() {
         this.baseUrl = 'https://jsonplaceholder.typicode.com';
+
+        this.client = axios.create({
+            baseURL: this.baseUrl,
+            timeout: 5000,
+            validateStatus: () => true
+        });
     }
 
-    // GET USERS
     async getUsers() {
+    const start = Date.now();
 
-        return await axios.get(
-            `${this.baseUrl}/users`
-        );
+    const response = await this.client.get('/users');
+
+    return {
+        ...response,
+        duration: Date.now() - start
+    };
+}
+
+    createUser(payload) {
+        return this.client.post('/users', payload);
     }
 
-    // CREATE USER
-    async createUser(payload) {
-
-        return await axios.post(
-            `${this.baseUrl}/users`,
-            payload
-        );
+    updateUser(id, payload) {
+        return this.client.put(`/users/${id}`, payload);
     }
 
-    // UPDATE USER
-    async updateUser(id, payload) {
-
-        return await axios.put(
-            `${this.baseUrl}/users/${id}`,
-            payload
-        );
+    deleteUser(id) {
+        return this.client.delete(`/users/${id}`);
     }
 
-    // DELETE USER
-    async deleteUser(id) {
+    async getInvalidUser() {
+    const start = Date.now();
 
-        return await axios.delete(
-            `${this.baseUrl}/users/${id}`
-        );
-    }
+    const response = await this.client.get('/users/999999');
+
+    return {
+        ...response,
+        duration: Date.now() - start
+    };
+}
 }
 
 module.exports = UserApi;
